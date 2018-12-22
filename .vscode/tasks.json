@@ -8,7 +8,7 @@
             "type": "shell",
             "command": "make",
             "args": [
-                "-j"
+                "-j", "8"
             ],
             // "group": {
             //     "kind": "build",
