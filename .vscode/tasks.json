@@ -10,6 +10,26 @@
             "args": [
                 "-j"
             ],
+            // "group": {
+            //     "kind": "build",
+            //     "isDefault": true
+            // },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": true
+            }
+        },
+        {
+            "label": "Build and run",
+            "type": "shell",
+            "command": "./ArUcoLocalizer",
+            "args": [
+                
+            ],
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -21,7 +41,8 @@
                 "panel": "shared",
                 "showReuseMessage": false,
                 "clear": true
-            }
+            },
+            "dependsOn": "Build"
         }
     ]
 }
