@@ -22,7 +22,10 @@ int main(int argc, char** argv)
         }
     }
     
-    cv::VideoCapture inputVideo; inputVideo.open(0);
+    cv::VideoCapture inputVideo;
+    inputVideo.open(0);
+    inputVideo.set(CV_CAP_PROP_FRAME_WIDTH, 2000);
+    inputVideo.set(CV_CAP_PROP_FRAME_HEIGHT, 2000);
     // cv::aruco::Dictionary dictionary = cv::aruco::getPredefinedDictionary(cv::aruco::DICT_4X4_100);
     while (inputVideo.grab()) { 
         cv::Mat image, imageCopy; 
@@ -38,6 +41,28 @@ int main(int argc, char** argv)
 
         if (ids.size() > 0) 
             cv::aruco::drawDetectedMarkers(imageCopy, corners, ids, cv::Scalar(255, 50, 200));
+
+        cv::Size patternsize(9, 7); //interior number of corners
+        // cv::Mat gray = image; 
+        std::vector<cv::Point2f> _corners; //this will be filled by the detected corners
+        //CALIB_CB_FAST_CHECK saves a lot of time on images
+        //that do not contain any chessboard corners
+        // bool patternfound = findChessboardCorners(gray, patternsize, corners,
+        //         cv::CALIB_CB_ADAPTIVE_THRESH + cv::CALIB_CB_NORMALIZE_IMAGE
+        //         + cv::CALIB_CB_FAST_CHECK);
+        // if(patternfound)
+        // cornerSubPix(gray, _corners, cv::Size(11, 11), cv::Size(-1, -1),
+        //     cv::TermCriteria(CV_TERMCRIT_EPS + CV_TERMCRIT_ITER, 30, 0.1));
+            // drawChessboardCorners(imageCopy, patternsize, cv::Mat(_corners), patternfound);
+
+        bool found = findChessboardCorners(image, patternsize, _corners, cv::CALIB_CB_ADAPTIVE_THRESH + cv::CALIB_CB_NORMALIZE_IMAGE
+                + cv::CALIB_CB_FAST_CHECK);
+        if(found)
+        {
+            cv::putText(imageCopy, "DETECTED", cv::Point(20, 20), cv::FONT_HERSHEY_PLAIN, 1.0, cv::Scalar(0,255,0), 2.0);
+            drawChessboardCorners(imageCopy, patternsize, cv::Mat(_corners), found);
+        }
+
 
         // for (auto& c : corners)
         //     std::cout << c << std::endl;

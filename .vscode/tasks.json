@@ -28,7 +28,7 @@
             "type": "shell",
             "command": "./ArUcoLocalizer",
             "args": [
-                "generate", "3"
+                "detect", ""
             ],
             "group": {
                 "kind": "build",
