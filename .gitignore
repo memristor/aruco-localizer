@@ -3,15 +3,15 @@
 
 !.gitignore
 
-!*.cpp
-!*.hpp
-!*.c
-!*.h
+!source/*.cpp
+!source/*.hpp
+!source/*.c
+!source/*.h
 
-!**.cpp
-!**.hpp
-!**.c
-!**.h
+!source/**.cpp
+!source/**.hpp
+!source/**.c
+!source/**.h
 
 !CMakeLists.txt
 

@@ -7,9 +7,11 @@ project(
     ArUcoLocalizer
 )
 
+include_directories("source/")
+
 add_executable( 
     ArUcoLocalizer
-    localizer.cpp
+    source/localizer.cpp
 )
 
 find_package( OpenCV REQUIRED )
