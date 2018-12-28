@@ -15,5 +15,6 @@ add_executable(
 )
 
 find_package( OpenCV REQUIRED )
+find_package( Eigen3 REQUIRED )
 
-target_link_libraries( ArUcoLocalizer ${OpenCV_LIBS} stdc++fs )
+target_link_libraries( ArUcoLocalizer ${OpenCV_LIBS} ${Eigen3_LIBS} stdc++fs )
