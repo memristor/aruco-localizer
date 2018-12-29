@@ -8,7 +8,10 @@
 #include <opencv2/highgui.hpp>
 #include <opencv2/aruco.hpp>
 
+#include <eigen3/Eigen/Dense>
+
 #include "markers.cpp"
+#include "render.cpp"
 
 int main(int argc, char** argv)
 {
@@ -22,11 +25,16 @@ int main(int argc, char** argv)
         }
     }
     
+    render::render();
+
+    return 0;
+
     cv::VideoCapture inputVideo;
     inputVideo.open(0);
     inputVideo.set(CV_CAP_PROP_FRAME_WIDTH, 2000);
     inputVideo.set(CV_CAP_PROP_FRAME_HEIGHT, 2000);
     // cv::aruco::Dictionary dictionary = cv::aruco::getPredefinedDictionary(cv::aruco::DICT_4X4_100);
+
     while (inputVideo.grab()) { 
         cv::Mat image, imageCopy; 
         inputVideo.retrieve(image); 
